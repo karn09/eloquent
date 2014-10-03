@@ -80,6 +80,10 @@ function zip() {
     });
 }
 
+/**
+ * call zip function, passing as arguments centuries and ages, store in groupings
+ * @type {array}
+ */
 var groupings = zip(centuries, ages)
 
 
