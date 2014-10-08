@@ -16,16 +16,21 @@ function StretchCell (inner, width, height) {
 	this.height = height;
 }
 
-StretchCell.prototype.minWidth = function() {
+StretchCell.prototype = {
 
-}
+	minWidth: function (){
 
-StretchCell.prototype.minHeight = function() {
+	},
 
-}
-StretchCell.prototype.draw = function(width, height) {
+	minHeight: function () {
+		// body...
+	},
 
-}
+	draw: function (width, height) {
+		
+	}
+};
+
 
 
 var sc = new StretchCell(new TextCell("abc"), 1, 2);
