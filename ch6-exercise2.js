@@ -126,7 +126,7 @@ function TextCell(text) {
 TextCell.prototype.minWidth = function() {
   return this.text.reduce(function(width, line) {
     return Math.max(width, line.length);
-  }, 0); // 0 does not need to be specified, but it is?
+  }, 1); // 0 does not need to be specified, but it is?
 };
 
 /**
@@ -225,9 +225,12 @@ RTextCell.prototype.draw = function(width, height) {
 
 function dataTable(data) {
   var keys = Object.keys(data[0]); // takes in all the prop names of first cell
+   console.log(keys);
   var headers = keys.map(function(name) { //send prop names to map them
     return new UnderlinedCell(new TextCell(name)); 
-  }); // map them to new Underline cells
+  }); 
+console.log(headers)
+  // map them to new Underline cells
   // headers is now:
   // { inner: { text: [ 'name' ] } 
   // { inner: { text: [ 'height' ] } 
@@ -247,7 +250,7 @@ function dataTable(data) {
   return [headers].concat(body);
 }
 
-//console.log(drawTable(dataTable(mountains)));
+console.log(drawTable(dataTable(mountains)));
 
 /*
 name         height country      
@@ -281,19 +284,6 @@ Don’t forget to add a draw method that simply forwards the call to the inner c
 function StretchCell(inner, width, height) {
     this.inner = inner;
     var text = this.inner.text;
-    if (text.length < height) {
-        while (height - text.length > 0) {
-            text = text.concat([""]);
-            --height;
-        }
-    }
-    this.inner.text = text.map(function (line) {
-        if (line.length < width) {
-            return line.concat(repeat(" ", width - line.length));
-        } else {
-            return line;
-        }
-    });
 }
 
 StretchCell.prototype.minHeight = function () {
