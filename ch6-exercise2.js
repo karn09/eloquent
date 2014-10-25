@@ -225,11 +225,10 @@ RTextCell.prototype.draw = function(width, height) {
 
 function dataTable(data) {
   var keys = Object.keys(data[0]); // takes in all the prop names of first cell
-   console.log(keys);
+   //console.log(keys);
   var headers = keys.map(function(name) { //send prop names to map them
     return new UnderlinedCell(new TextCell(name)); 
   }); 
-console.log(headers)
   // map them to new Underline cells
   // headers is now:
   // { inner: { text: [ 'name' ] } 
@@ -283,7 +282,12 @@ Don’t forget to add a draw method that simply forwards the call to the inner c
 */
 function StretchCell(inner, width, height) {
     this.inner = inner;
+    this.width = width; 
+    this.height = height;
     var text = this.inner.text;
+    if (text.length < height) {
+      text.push(repeat(" ", width))
+    }
 }
 
 StretchCell.prototype.minHeight = function () {
